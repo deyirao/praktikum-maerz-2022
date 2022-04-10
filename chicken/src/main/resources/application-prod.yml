@@ -1,0 +1,45 @@
+spring:
+  flyway:
+    schemas: chicken
+    create-schemas: true
+    url: jdbc:mariadb://db:3306/
+    user: root
+    password: ${MYSQLPASSWORD}
+  datasource:
+    url: jdbc:mariadb://db:3306/chicken
+    username: root
+    password: ${MYSQLPASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
+            authorization-grant-type: authorization_code
+            scope: user
+
+        provider:
+          github:
+            authorization-uri: https://github.com/login/oauth/authorize
+            token-uri: https://github.com/login/oauth/access_token
+
+gruppen:
+  organisatoren: ${ORGANISATOREN}
+  tutoren: ${TUTOREN}
+
+praktikumszeiten:
+  start:
+    datum: ${STARTDATUM}
+    uhrzeit: ${STARTUHRZEIT}
+  ende:
+    datum: ${ENDDATUM}
+    uhrzeit: ${ENDUHRZEIT}
+
+server:
+  port: 8080
+
+lsf:
+  domain: "https://lsf.hhu.de/"
+  uri: "qisserver/rds?state=verpublish&status=init&vmfile=no&publishid={value}&moduleCall=webInfo&publishConfFile=webInfo&publishSubDir=veranstaltung"

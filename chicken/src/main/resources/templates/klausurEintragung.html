@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+  <title>Neue Klausur eintragen</title>
+</head>
+<body>
+<div class="container">
+  <h1>Neue Klausur eintragen</h1>
+  <form th:action="@{/klausuren}" th:object="${klausurForm}" method="post">
+    <div class="mb-3 mt-4">
+      <label for="lectureName">Name der Veranstaltung</label>
+      <input type="text" id="lectureName" class="form-control" th:field="*{fach}">
+      <div class="alert alert-danger" th:if="${#fields.hasErrors('fach')}">Geben Sie einen gültigen Veranstaltungsnamen ein!</div>
+    </div>
+    <div class="mb-3">
+      <label for="lectureId">ID der Veranstaltung im LSF</label>
+      <input type="text" id="lectureId" class="form-control" th:field="*{veranstaltungsId}">
+      <div class="alert alert-danger" th:if="${#fields.hasErrors('veranstaltungsId')}">Die ID konnte nicht im LSF gefunden werden!</div>
+    </div>
+    <div class="mb-3">
+      <input type="checkbox" id="liveExam" class="" name="isPraesenz" th:field="*{isPraesenz}">
+      <label for="liveExam">Die Klausur findet in Präsenz statt.</label>
+    </div>
+    <div class="mb-3">
+      <label for="dayOfExam">Datum der Klausur (Im Format yyyy-mm-dd)</label>
+      <input type="date" id="dayOfExam" class="form-control" th:field="*{datum}">
+      <div class="alert alert-danger" th:if="${#fields.hasErrors('datum')}">Geben Sie ein gültiges Datum ein!</div>
+    </div>
+    <div class="mb-3">
+      <label for="startTime">Klausurbeginn (Im Format HH:mm)</label>
+      <input type="time" id="startTime" class="form-control" th:field="*{von}">
+      <div class="alert alert-danger" th:if="${#fields.hasErrors('von')}">Geben Sie eine gültige Uhrzeit ein!</div>
+    </div>
+    <div class="mb-3">
+      <label for="endTime">Klausurende (Im Format HH:mm)</label>
+      <input type="time" id="endTime" class="form-control" th:field="*{bis}">
+      <div class="alert alert-danger" th:if="${#fields.hasErrors('bis')}">Geben Sie eine gültige Uhrzeit ein!</div>
+    </div>
+    <div class="error" th:if="${#fields.hasErrors('praesenzKlausurZeitraum')}">
+      <div class="alert alert-danger" th:errors="*{praesenzKlausurZeitraum}"></div>
+    </div>
+
+    <div class="error" th:if="${#fields.hasErrors('onlineKlausurZeitraum')}">
+      <div class="alert alert-danger" th:errors="*{onlineKlausurZeitraum}"></div>
+    </div>
+    <button aria-label="Klausur eintragen" class="btn btn-primary" type="submit">Eintragen</button>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+// header file for arc42-template,
+// including all help texts
+//
+// ====================================
+
+= image:images/arc42-logo.png[arc42] Template
+// toc-title definition MUST follow document title without blank line!
+:toc-title: Inhaltsverzeichnis
+
+//additional style for arc42 help callouts
+ifdef::backend-html5[]
+++++
+<style>
+.arc42help {font-size:small; width: 14px; height: 16px; overflow: hidden; position: absolute; right: 0; padding: 2px 0 3px 2px;}
+.arc42help::before {content: "?";}
+.arc42help:hover {width:auto; height: auto; z-index: 100; padding: 10px;}
+.arc42help:hover::before {content: "";}
+@media print {
+	.arc42help {display:none;}
+}
+</style>
+++++
+endif::backend-html5[]
+
+// configure DE settings for asciidoc
+include::src/config.adoc[]
+
+
+include::src/about-arc42.adoc[]
+
+// horizontal line
+***
+
+// numbering from here on
+:numbered:
+
+<<<<
+// 1. Kontextabgrenzung
+include::src/03_system_scope_and_context.adoc[]
+
+<<<<
+// 2. Lösungsstrategie
+include::src/04_solution_strategy.adoc[]
+
+<<<<
+// 3. Bausteinsicht
+include::src/05_building_block_view.adoc[]
+
+<<<<
+// 4. Entscheidungen
+include::src/09_architecture_decisions.adoc[]
+
+<<<<
+// 5. Qualitätsanforderungen
+include::src/10_quality_requirements.adoc[]
